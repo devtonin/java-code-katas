@@ -12,6 +12,33 @@
         <maven.compiler.source>24</maven.compiler.source>
         <maven.compiler.target>24</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <formatter-maven-plugin.version>2.29.0</formatter-maven-plugin.version>
     </properties>
+
+    <build>
+        <plugins>
+            <!--
+                Eclipse code formatter (successor of com.googlecode:maven-java-formatter-plugin).
+                - Validate (runs on every build, fails if unformatted): mvn validate
+                - Format the code:                                     mvn formatter:format
+            -->
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <version>${formatter-maven-plugin.version}</version>
+                <configuration>
+                    <configFile>${project.basedir}/eclipse-formatter.xml</configFile>
+                    <lineEnding>KEEP</lineEnding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

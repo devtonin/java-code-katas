@@ -1,8 +1,10 @@
-package reals;
+package interviews.sorting;
 
-public class WM {
+import java.util.Arrays;
 
-	public void bubbleSort(int[] array) {
+public class BubbleSort {
+
+	public static void bubbleSort(int[] array) {
 		boolean swapped = true;
 		int j = 0;
 		int tmp;
@@ -19,7 +21,10 @@ public class WM {
 			}
 		}
 	}
-	public static void main (String[] args) {
 
+	public static void main(String[] args) {
+		int[] array = { 5, 1, 4, 2, 8, 0, -3 };
+		bubbleSort(array);
+		System.out.println(Arrays.toString(array)); // [-3, 0, 1, 2, 4, 5, 8]
 	}
 }

@@ -1,24 +1,28 @@
 package leetcode.arrays;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
+/**
+ * LeetCode 26 - Remove Duplicates from Sorted Array (Easy)
+ * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+ */
 public class RemoveDuplicatesFromSortedArray {
 
 	public static void main(String[] args) {
-		int[] nums = {0,0,1,1,1,2,2,3,3,4};
-		int[] expectedNums = {0,1,2,3,4};
+		int[] nums = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+		int[] expectedNums = { 0, 1, 2, 3, 4 };
 
 		int k = removeDuplicates(nums);
 
-		assert k == expectedNums.length;
-		for (int i = 0; i < k; i++) {
-			assert nums[i] == expectedNums[i];
-		}
+		boolean ok = k == expectedNums.length && Arrays.equals(Arrays.copyOf(nums, k), expectedNums);
+
+		System.out.println("k = " + k + " -> " + Arrays.toString(Arrays.copyOf(nums, k))); // k = 5 -> [0, 1, 2, 3, 4]
+		System.out.println(ok ? "OK" : "FALHOU");
 	}
 
 	public static int removeDuplicates(int[] nums) {
-		if (nums.length == 0) return 0;
+		if (nums.length == 0)
+			return 0;
 
 		int i = 1;
 
@@ -28,12 +32,6 @@ public class RemoveDuplicatesFromSortedArray {
 				i++;
 			}
 		}
-
-		List<Integer> test = new ArrayList<>();
-		for (int k : nums) {
-			test.add(nums[k]);
-		}
-		System.out.println(test);
 
 		return i;
 	}

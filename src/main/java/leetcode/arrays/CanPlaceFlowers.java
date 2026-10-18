@@ -1,39 +1,37 @@
 package leetcode.arrays;
 
+/**
+ * LeetCode 605 - Can Place Flowers (Easy)
+ * https://leetcode.com/problems/can-place-flowers/
+ */
 public class CanPlaceFlowers {
 	public static void main(String[] args) {
-		int[] flowerbed = {1,0,0,0,1};
+		int[] flowerbed = { 1, 0, 0, 0, 1 };
 		boolean cPf = canPlaceFlowers(flowerbed, 1);
 		if (cPf) {
 			System.out.println("Pode plantar");
 		} else {
 			System.out.println("Não pode plantar");
 		}
+
+		System.out.println(canPlaceFlowers(new int[] { 1, 0, 0, 0, 1 }, 2)); // false
+		System.out.println(canPlaceFlowers(new int[] { 0, 0, 1, 0, 0 }, 2)); // true
 	}
 
 	public static boolean canPlaceFlowers(int[] flowerbed, int n) {
-		/*
-		 *  ver numero do array, se for par, o numero de flores vai ser metade desse numero
-		 * se for impar, vai ser o módulo
-		 * 
-		 * verificar quantos 1ns tem no array.
-		 * 
-		 * pra saber o boolean, verificar se o numero que tem + o n dá igual o numero inicial
-		 * 
-		 */
+		int tamanho = flowerbed.length;
+		int plantadas = 0;
 
-		 int tamanho = flowerbed.length;
+		for (int i = 0; i < tamanho && plantadas < n; i++) {
+			boolean esquerdaVazia = i == 0 || flowerbed[i - 1] == 0;
+			boolean direitaVazia = i == tamanho - 1 || flowerbed[i + 1] == 0;
 
-		 int floresQueCabe = tamanho % 2 == 0 ? tamanho / 2 : tamanho / 2 + 1;
-
-		 int count = 0;
-		 for (int i = 0; i < tamanho; i++) {
-			if (flowerbed[i] == 1) {
-				count++;
+			if (flowerbed[i] == 0 && esquerdaVazia && direitaVazia) {
+				flowerbed[i] = 1;
+				plantadas++;
 			}
-		 }
+		}
 
-		 if ( count + n  == floresQueCabe) return true;
-		 return false;
+		return plantadas >= n;
 	}
 }

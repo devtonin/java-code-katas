@@ -1,8 +1,12 @@
 package leetcode.arrays;
 
+/**
+ * LeetCode 121 - Best Time to Buy and Sell Stock (Easy)
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+ */
 public class BestTimeToBuyAndSellStock {
 	public static void main(String[] args) {
-		int[] prices = {7,1,5,3,6,4};
+		int[] prices = { 7, 1, 5, 3, 6, 4 };
 
 		System.out.println(maxProfit(prices));
 	}
